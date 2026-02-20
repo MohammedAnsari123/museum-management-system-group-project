@@ -4,20 +4,7 @@ A full-stack Museum Management System built with **Flask**, **MongoDB**, and a l
 
 ---
 
-## 📋 Table of Contents
-
-- [Tech Stack](#-tech-stack)
-- [Prerequisites](#-prerequisites)
-- [Setup & Installation](#-setup--installation)
-- [Download the LLM Model](#-download-the-llm-model)
-- [Seed the Database](#-seed-the-database)
-- [Run the Application](#-run-the-application)
-- [Project Structure](#-project-structure)
-- [Features](#-features)
-
----
-
-## 🛠️ Tech Stack
+## ️ Tech Stack
 
 | Layer       | Technology                                   |
 |-------------|----------------------------------------------|
@@ -42,16 +29,18 @@ Make sure you have the following installed before starting:
 
 ---
 
-## 🚀 Setup & Installation
+## 🚀 Setup & Run
 
-### 1. Clone the Repository
+Follow these steps **in order** to get the project running:
+
+### Step 1: Clone the Repository
 
 ```bash
-git clone <your-repo-url>
-cd Museum-Management-System
+git clone https://github.com/MohammedAnsari123/museum-management-system-group-project.git
+cd museum-management-system-group-project
 ```
 
-### 2. Create a Virtual Environment (Recommended)
+### Step 2: Create a Virtual Environment (Recommended)
 
 ```bash
 python -m venv venv
@@ -68,7 +57,32 @@ Activate it:
   source venv/bin/activate
   ```
 
-### 3. Install Dependencies
+### Step 3: Download the LLM Model
+
+> ⚠️ **Important:** The `models/` folder is **not included** in this repository because the LLM model file is approximately **2.4 GB** in size. You **must** download it before the chatbot can work.
+
+#### Option A: Using the download script (Recommended)
+
+```bash
+python download_model.py
+```
+
+This will automatically download `Phi-3-mini-4k-instruct-q4.gguf` from Hugging Face into the `models/` folder.
+
+#### Option B: Manual download
+
+1. Go to [microsoft/Phi-3-mini-4k-instruct-gguf](https://huggingface.co/microsoft/Phi-3-mini-4k-instruct-gguf) on Hugging Face
+2. Download the file: **`Phi-3-mini-4k-instruct-q4.gguf`**
+3. Create a `models/` folder in the project root and place the file inside:
+   ```
+   museum-management-system-group-project/
+   └── models/
+       └── Phi-3-mini-4k-instruct-q4.gguf
+   ```
+
+> **Note:** Make sure you have a stable internet connection. The download is ~2.4 GB and may take some time.
+
+### Step 4: Install Dependencies
 
 ```bash
 pip install -r requirements.txt
@@ -79,36 +93,7 @@ pip install -r requirements.txt
 > CMAKE_ARGS="-DLLAMA_CUBLAS=on" pip install llama-cpp-python
 > ```
 
----
-
-## 🤖 Download the LLM Model
-
-The chatbot uses **Microsoft Phi-3-mini** (quantized GGUF format, ~2.4 GB). The model is **not included** in the repository due to its size. You must download it before using the chatbot.
-
-### Option A: Using the download script (Recommended)
-
-```bash
-python download_model.py
-```
-
-This will automatically download `Phi-3-mini-4k-instruct-q4.gguf` into the `models/` folder.
-
-### Option B: Manual download
-
-1. Go to [microsoft/Phi-3-mini-4k-instruct-gguf](https://huggingface.co/microsoft/Phi-3-mini-4k-instruct-gguf) on Hugging Face
-2. Download the file: **`Phi-3-mini-4k-instruct-q4.gguf`**
-3. Place it in the `models/` folder:
-   ```
-   Museum-Management-System/
-   └── models/
-       └── Phi-3-mini-4k-instruct-q4.gguf
-   ```
-
-> **Note:** The download is approximately **2.4 GB**. Make sure you have a stable internet connection.
-
----
-
-## 🌱 Seed the Database
+### Step 5: Seed the Database (Optional)
 
 To populate the database with sample museums, bookings, and ratings:
 
@@ -118,9 +103,7 @@ python seed.py
 
 This will insert sample data into the `miuzeum_db` MongoDB database only if the collections are empty.
 
----
-
-## ▶️ Run the Application
+### Step 6: Run the Application
 
 ```bash
 python main.py
@@ -128,7 +111,9 @@ python main.py
 
 The server will start on **http://localhost:5000**
 
-### Pages:
+---
+
+## 🌐 Pages & URLs
 
 | Page | URL |
 |------|-----|
@@ -146,7 +131,7 @@ The server will start on **http://localhost:5000**
 ## 📁 Project Structure
 
 ```
-Museum-Management-System/
+museum-management-system-group-project/
 ├── main.py                  # Flask app entry point & API routes
 ├── db.py                    # MongoDB connection & collections
 ├── seed.py                  # Database seeder with sample data
@@ -158,7 +143,7 @@ Museum-Management-System/
 │   ├── auth_routes.py       # Authentication (login, register, password reset)
 │   └── chatbot_routes.py    # AI chatbot API (Phi-3 LLM)
 │
-├── models/                  # LLM model files (not tracked by git)
+├── models/                  # LLM model files (⚠️ not included in repo, download separately)
 │   └── Phi-3-mini-4k-instruct-q4.gguf
 │
 ├── templates/
