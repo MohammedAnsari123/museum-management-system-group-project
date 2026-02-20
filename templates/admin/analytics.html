@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Analytics Dashboard</title>
+    <link rel="stylesheet" href="../../static/css/admin_style.css" />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body>
+
+    <header class="admin-header">
+        <div>
+            <h1>View Analytics</h1>
+            <p class="section-subtitle header-subtitle">Monitor visitor statistics and trends</p>
+        </div>
+        <button class="btn btn-light">Back</button>
+    </header>
+
+    <main class="dashboard">
+
+        <!-- Statistics Cards -->
+        <div class="admin-card">
+            <h2>Booking Statistics</h2>
+            <div id="bookingStats"></div>
+        </div>
+
+        <div class="admin-card">
+            <h2>Museum Statistics</h2>
+            <div id="museumStats"></div>
+        </div>
+
+        <!-- Charts -->
+        <div class="admin-card">
+            <h2>Visitor Trends</h2>
+            <p class="section-subtitle">Track total vs attended bookings overview</p>
+            <canvas id="visitorChart" width="400" height="200"></canvas>
+        </div>
+
+        <div class="admin-card">
+            <h2>Museum Types Distribution</h2>
+            <p class="section-subtitle">Breakdown of museums by type</p>
+            <canvas id="museumTypeChart" width="400" height="200"></canvas>
+        </div>
+
+        <!-- Foreign Visitors Chart -->
+        <div class="admin-card">
+            <h2>Foreign Visitors by Year</h2>
+            <p class="section-subtitle">Yearly trend of foreign visitors (from foreign.csv)</p>
+            <canvas id="foreignVisitorsChart" width="400" height="200"></canvas>
+        </div>
+
+        <!-- Foreign Visitors by District -->
+        <div class="admin-card">
+            <h2>Foreign Visitors by District (Top 10)</h2>
+            <p class="section-subtitle">Top districts by total foreign visitors</p>
+            <canvas id="districtChart" width="400" height="200"></canvas>
+        </div>
+
+    </main>
+
+    <script src="../../static/js/analytics.js"></script>
+
+</body>
+
+</html>

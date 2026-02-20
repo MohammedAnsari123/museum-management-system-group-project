@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Manage Museums</title>
+    <link rel="stylesheet" href="../../static/css/admin_style.css" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+        integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+</head>
+
+<body>
+
+    <header class="admin-header">
+        <h1>Manage Museums</h1>
+        <a href="admin_dashboard.html" class="btn btn-light">Back</a>
+    </header>
+
+    <main class="dashboard">
+
+        <!-- Add Museum Form -->
+        <form id="addMuseumForm" class="admin-card">
+            <h2>Add Museum</h2>
+            <p class="section-subtitle">Enter museum details below. Latitude/Longitude can be filled by clicking on the
+                map.</p>
+            <div class="form-grid grid-2">
+                <div class="full-span">
+                    <label for="m_name">Name</label>
+                    <input type="text" id="m_name" placeholder="e.g., National Museum" required />
+                </div>
+                <div>
+                    <label for="m_city">City</label>
+                    <input type="text" id="m_city" placeholder="e.g., Delhi" required />
+                </div>
+                <div>
+                    <label for="m_state">State</label>
+                    <input type="text" id="m_state" placeholder="e.g., Delhi" />
+                </div>
+                <div>
+                    <label for="m_type">Type</label>
+                    <select id="m_type">
+                        <option value="" disabled selected>Select type</option>
+                        <option>Art</option>
+                        <option>History</option>
+                        <option>Science</option>
+                        <option>Natural History</option>
+                        <option>Technology</option>
+                        <option>Children's</option>
+                        <option>Archaeology</option>
+                        <option>Culture</option>
+                        <option>Military</option>
+                        <option>Transportation</option>
+                        <option>Other</option>
+                    </select>
+                </div>
+                <div>
+                    <label for="m_est">Established</label>
+                    <input type="text" id="m_est" placeholder="e.g., 1950" />
+                </div>
+                <div>
+                    <label for="m_lat">Latitude</label>
+                    <input type="number" step="any" id="m_lat" placeholder="Click on map to fill" />
+                </div>
+                <div>
+                    <label for="m_lon">Longitude</label>
+                    <input type="number" step="any" id="m_lon" placeholder="Click on map to fill" />
+                </div>
+                <div class="full-span">
+                    <div id="m_map" class="map-container"></div>
+                </div>
+                <div class="full-span">
+                    <button type="submit" class="btn btn-primary">Add Museum</button>
+                </div>
+            </div>
+        </form>
+
+        <!-- Museums List -->
+        <div class="admin-card">
+            <h2>Museums</h2>
+            <div id="museumError" class="error-message"></div>
+            <ul id="museumList"></ul>
+            <div id="museumPager" class="pagination"></div>
+        </div>
+
+    </main>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+        integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+    <script src="../../static/js/manage_exhibits.js"></script>
+
+</body>
+
+</html>

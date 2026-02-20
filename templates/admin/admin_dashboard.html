@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin Dashboard</title>
+  <link rel="stylesheet" href="../../static/css/admin_style.css" />
+</head>
+
+<body>
+  <header class="admin-header">
+    <div class="header-content">
+      <h1>Admin Dashboard</h1>
+      <p>Manage your museum operations efficiently</p>
+    </div>
+    <div class="admin-nav">
+      <a href="../index.html" class="nav-link">Home</a>
+      <a href="../visitor/gallery.html" class="nav-link">Gallery</a>
+      <div class="auth-buttons">
+        <button class="auth-btn login-btn" data-link="admin_auth.html">Admin Login</button>
+        <button class="auth-btn logout-btn" data-link="admin_auth.html">Logout</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="dashboard">
+    <div class="dashboard-header">
+      <h2>Quick Actions</h2>
+      <p>Select an option to manage your museum</p>
+    </div>
+
+    <div class="admin-grid">
+      <div class="admin-card" data-link="manage_exhibits.html">
+        <div class="card-icon">🏛️</div>
+        <h3>Manage Exhibits</h3>
+        <p>Add, edit, and organize museum exhibits</p>
+      </div>
+
+      <div class="admin-card" data-link="analytics.html">
+        <div class="card-icon">📊</div>
+        <h3>View Analytics</h3>
+        <p>Monitor visitor statistics and trends</p>
+      </div>
+
+      <div class="admin-card" data-link="manage_bookings.html">
+        <div class="card-icon">🧾</div>
+        <h3>Manage Booking</h3>
+        <p>View and update booking statuses</p>
+      </div>
+
+      <div class="admin-card" data-link="admin_ratings.html">
+        <div class="card-icon">⭐</div>
+        <h3>Manage Ratings</h3>
+        <p>Review and manage visitor ratings</p>
+      </div>
+
+    </div>
+  </main>
+  <script src="../../static/js/admin_dashboard.js"></script>
+</body>
+
+</html>

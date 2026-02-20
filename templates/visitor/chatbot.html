@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Museum Chatbot - PixelPast Museum</title>
+  <link rel="stylesheet" href="../../static/css/VisitorsHomePage.css" />
+  <link rel="stylesheet" href="../../static/css/chatbot.css" />
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+
+<body class="light-mode">
+
+  <!-- Navigation Header -->
+  <header class="visitor-nav">
+    <div class="nav-logo">
+      <h2><i class="fas fa-museum"></i> PixelPast Museum</h2>
+    </div>
+    <nav class="nav-menu">
+      <a href="../index.html"><i class="fas fa-home"></i> Home</a>
+      <a href="gallery.html"><i class="fas fa-images"></i> Gallery</a>
+      <a href="VisitorsHomePage.html#dashboard"><i class="fas fa-tachometer-alt"></i> Dashboard</a>
+      <a href="chatbot.html" class="active"><i class="fas fa-robot"></i> Museum Chatbot</a>
+    </nav>
+    <div class="nav-auth">
+      <span class="user-welcome">Welcome, Visitor!</span>
+      <a href="#" id="logoutBtn" class="auth-btn logout-btn"
+        style="background: #D9A299; color: black; display: flex; width: 130px; border-radius: 5px; list-style: none; text-align: center; justify-content: center; align-items: center; text-decoration: none; font-weight: 700;">
+        <i class="fas fa-sign-out-alt"></i> Logout
+      </a>
+    </div>
+  </header>
+
+  <button id="toggle-mode" class="theme-toggle">🌙</button>
+
+  <!-- Chatbot Section -->
+  <section class="chatbot-container">
+    <div class="chat-header">
+      <h1><i class="fas fa-robot"></i> Museum Information Chatbot</h1>
+      <p>Ask me about museums, their locations, types, or specific information!</p>
+    </div>
+
+    <div class="chat-messages" id="chatMessages">
+      <div class="message bot-message">
+        <strong>Chatbot:</strong> Hello! I'm your Museum Information Assistant. I can help you find information about
+        museums in India. You can ask me about specific museums, search for museums in specific locations, or ask about
+        different types of museums. What would you like to know?
+      </div>
+    </div>
+
+    <div class="typing-indicator" id="typingIndicator">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+
+    <div class="chat-input">
+      <input type="text" id="userInput" placeholder="Ask about museums..." style="background: #fff; color: black;" />
+      <button id="sendButton"><i class="fas fa-paper-plane"></i> Send</button>
+      <button id="resetButton" style="background: #ff6b6b;"><i class="fas fa-sync"></i> Reset</button>
+    </div>
+  </section>
+
+  <!-- Chatbot Features -->
+  <section class="chatbot-features">
+    <h2><i class="fas fa-star"></i> What I Can Help You With</h2>
+    <div class="feature-grid">
+      <div class="feature-card">
+        <i class="fas fa-search"></i>
+        <h3>Find Museums</h3>
+        <p>Search for museums by name, city, or type</p>
+      </div>
+      <div class="feature-card">
+        <i class="fas fa-info-circle"></i>
+        <h3>Museum Details</h3>
+        <p>Get detailed information about specific museums</p>
+      </div>
+      <div class="feature-card">
+        <i class="fas fa-map-marker-alt"></i>
+        <h3>Location-Based</h3>
+        <p>Find museums in specific cities or states</p>
+      </div>
+      <div class="feature-card">
+        <i class="fas fa-list"></i>
+        <h3>Museum Types</h3>
+        <p>Learn about different types of museums</p>
+      </div>
+    </div>
+  </section>
+
+  <script src="../../static/js/chatbot.js"></script>
+  <script>
+    // Logout handler
+    const logoutBtn = document.getElementById('logoutBtn');
+    if (logoutBtn) {
+      logoutBtn.addEventListener('click', function (e) {
+        e.preventDefault();
+        fetch('/api/auth/logout', { method: 'POST' })
+          .then(() => { window.location.href = 'visitor_login.html'; })
+          .catch(err => console.error('Logout failed', err));
+      });
+    }
+
+    // Theme toggle
+    const toggleBtn = document.getElementById('toggle-mode');
+    if (toggleBtn) {
+      toggleBtn.addEventListener('click', function () {
+        document.body.classList.toggle('dark-mode');
+        document.body.classList.toggle('light-mode');
+        this.textContent = document.body.classList.contains('dark-mode') ? '☀️' : '🌙';
+      });
+    }
+  </script>
+
+</body>
+
+</html>

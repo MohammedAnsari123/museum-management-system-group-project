@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ML Modules</title>
+    <link rel="stylesheet" href="../../static/css/admin_style.css" />
+</head>
+
+<body>
+
+    <header class="admin-header">
+        <h1>ML Modules</h1>
+        <button>Back</button>
+    </header>
+
+    <main class="dashboard">
+
+        <!-- Recommendation System -->
+        <div class="admin-card">
+            <h2>Recommendation System</h2>
+            <p>AI-powered museum recommendations based on visitor preferences.</p>
+            <button id="testRecBtn">Test Recommendations</button>
+            <div id="recommendationResults"></div>
+        </div>
+
+        <!-- Visitor Prediction -->
+        <div class="admin-card">
+            <h2>Visitor Prediction</h2>
+            <p>Predict visitor numbers based on historical data.</p>
+            <input type="date" id="predictionDate" />
+            <button id="predictVisitorBtn">Predict Visitors</button>
+            <div id="predictionResults"></div>
+        </div>
+
+        <!-- Chatbot Management -->
+        <div class="admin-card">
+            <h2>Chatbot Management</h2>
+            <p>Manage AI chatbot responses and training data.</p>
+            <textarea id="chatbotResponse" placeholder="Add new chatbot response..."></textarea>
+            <button id="addChatbotBtn">Add Response</button>
+            <div id="chatbotResponses"></div>
+        </div>
+
+    </main>
+
+    <script src="../../static/js/ml_modules.js"></script>
+
+</body>
+
+</html>

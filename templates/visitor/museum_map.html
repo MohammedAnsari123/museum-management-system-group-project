@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Museum Map - PixelPast</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../../static/css/style.css" />
+    <link rel="stylesheet" href="../../static/css/museum_map.css" />
+</head>
+
+<body>
+    <a href="../index.html" class="back-button">← Back to Home</a>
+
+    <div class="header">
+        <h1><i class="fas fa-map-marker-alt"></i> Museum Map</h1>
+        <p>Explore museums across India with interactive locations and detailed information</p>
+    </div>
+
+    <div class="controls">
+        <div class="control-group">
+            <label for="typeFilter">Filter by Type:</label>
+            <select id="typeFilter">
+                <option value="">All Types</option>
+            </select>
+        </div>
+
+        <div class="control-group">
+            <label for="stateFilter">Filter by State:</label>
+            <select id="stateFilter">
+                <option value="">All States</option>
+            </select>
+        </div>
+
+        <div class="control-group">
+            <label for="searchInput">Search Museums:</label>
+            <input type="text" id="searchInput" placeholder="Enter museum name, city, or type...">
+        </div>
+    </div>
+
+    <div class="stats">
+        <div class="stat-card">
+            <h3>Total Museums</h3>
+            <p id="totalMuseums">0</p>
+        </div>
+        <div class="stat-card">
+            <h3>States Covered</h3>
+            <p id="totalStates">0</p>
+        </div>
+        <div class="stat-card">
+            <h3>Museum Types</h3>
+            <p id="totalTypes">0</p>
+        </div>
+        <div class="stat-card">
+            <h3>Museums with Coordinates</h3>
+            <p id="museumsWithCoords">0</p>
+        </div>
+    </div>
+
+    <div id="map"></div>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="../../static/js/museum_map.js"></script>
+</body>
+
+</html>

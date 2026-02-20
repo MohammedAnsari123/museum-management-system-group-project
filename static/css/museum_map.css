@@ -1,0 +1,191 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', sans-serif;
+    background-color: var(--body);
+}
+
+.header {
+    background: linear-gradient(to right, #000000, #D9A299);
+    color: white;
+    padding: 40px 20px;
+    text-align: center;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    margin-top: 80px;
+}
+
+.header h1 {
+    margin: 0;
+    font-size: 2.5em;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.header h1 i {
+    color: var(--btn-bg);
+    margin-right: 0.5rem;
+}
+
+.header p {
+    margin: 10px 0 0 0;
+    font-size: 1.1em;
+    opacity: 0.9;
+}
+
+.controls {
+    background: white;
+    padding: 20px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    margin: 20px;
+    border-radius: 10px;
+}
+
+.control-group {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.control-group label {
+    font-weight: bold;
+    color: var(--header-text);
+}
+
+.control-group select,
+.control-group input {
+    padding: 8px 12px;
+    border: 2px solid #ddd;
+    border-radius: 5px;
+    font-size: 14px;
+    min-width: 150px;
+}
+
+.control-group select:focus,
+.control-group input:focus {
+    outline: none;
+    border-color: var(--btn-bg);
+}
+
+.stats {
+    background: white;
+    padding: 20px;
+    margin: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+}
+
+.stat-card {
+    text-align: center;
+    padding: 20px;
+    background: linear-gradient(to right, var(--btn-bg), var(--btn-hover));
+    color: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.stat-card h3 {
+    margin: 0 0 10px 0;
+    font-size: 1.5em;
+}
+
+.stat-card p {
+    margin: 0;
+    font-size: 2em;
+    font-weight: bold;
+}
+
+#map {
+    height: 600px;
+    width: calc(100% - 40px);
+    margin: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+}
+
+.museum-popup {
+    font-family: 'Segoe UI', sans-serif;
+}
+
+.museum-popup h3 {
+    margin: 0 0 10px 0;
+    color: var(--header-text);
+    font-size: 1.2em;
+}
+
+.museum-popup p {
+    margin: 5px 0;
+    color: #666;
+}
+
+.museum-popup .type {
+    background: var(--btn-bg);
+    color: white;
+    padding: 4px 8px;
+    border-radius: 12px;
+    font-size: 0.8em;
+    display: inline-block;
+    margin-top: 5px;
+}
+
+.back-button {
+    position: absolute;
+    top: 100px;
+    left: 20px;
+    background: rgba(255, 255, 255, 0.9);
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    color: var(--header-text);
+    text-decoration: none;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+}
+
+.back-button:hover {
+    background: white;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+@media (max-width: 768px) {
+    .controls {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .control-group {
+        width: 100%;
+        max-width: 300px;
+    }
+
+    .stats {
+        grid-template-columns: 1fr;
+        margin: 10px;
+    }
+
+    #map {
+        margin: 10px;
+        height: 400px;
+        width: calc(100% - 20px);
+    }
+
+    .header h1 {
+        font-size: 2rem;
+    }
+
+    .back-button {
+        position: relative;
+        top: auto;
+        left: auto;
+        margin: 20px;
+        display: inline-block;
+    }
+}

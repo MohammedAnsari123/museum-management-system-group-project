@@ -1,0 +1,41 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+*.egg-info/
+dist/
+build/
+*.egg
+
+# Virtual environments
+venv/
+env/
+.env/
+
+# LLM Model files (large, download separately)
+models/*.gguf
+models/.cache/
+
+# IDE / Editor
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Museum uploaded photos (user-generated)
+museumphotos/*
+!museumphotos/.gitkeep
+
+# QR codes (generated at runtime)
+qrcodes/*
+!qrcodes/.gitkeep
+
+# Logs
+*.log

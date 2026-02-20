@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin - Ratings</title>
+  <link rel="stylesheet" href="../../static/css/admin_style.css" />
+</head>
+
+<body>
+  <header class="admin-header">
+    <div class="header-content">
+      <h1>Ratings</h1>
+      <p>All visitor ratings across bookings</p>
+    </div>
+    <div class="admin-nav">
+      <a href="admin_dashboard.html" class="nav-link">Dashboard</a>
+      <a href="admin_auth.html" class="nav-link">Logout</a>
+    </div>
+  </header>
+
+  <main class="dashboard">
+    <div class="page-header">
+      <div class="toolbar">
+        <input id="qMuseum" class="search" placeholder="Filter by museum..." />
+        <input id="qEmail" class="search" placeholder="Filter by email..." />
+        <input id="qTicket" class="search" placeholder="Filter by ticket id..." />
+      </div>
+      <div>
+        <select id="perPage" class="search min-w-auto">
+          <option value="10">10</option>
+          <option value="20">20</option>
+          <option value="50">50</option>
+        </select>
+      </div>
+    </div>
+
+    <div id="ratingsList" class="ratings-list"></div>
+    <div class="pagination">
+      <button id="prevBtn" class="btn btn-light">Prev</button>
+      <span id="pageInfo"></span>
+      <button id="nextBtn" class="btn btn-light">Next</button>
+    </div>
+  </main>
+
+  <script src="../../static/js/admin_ratings.js"></script>
+</body>
+
+</html>

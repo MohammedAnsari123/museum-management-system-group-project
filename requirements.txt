@@ -1,0 +1,5 @@
+flask
+pymongo
+werkzeug
+llama-cpp-python
+huggingface_hub

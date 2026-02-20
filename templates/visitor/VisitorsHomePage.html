@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PixelPast Museum - Visitor Dashboard</title>
+  <link rel="stylesheet" href="../../static/css/VisitorsHomePage.css" />
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.js"></script>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+</head>
+
+<body class="light-mode">
+
+  <!-- Navigation Header -->
+  <header class="visitor-nav">
+    <div class="nav-logo">
+      <h2><i class="fas fa-museum"></i> PixelPast Museum</h2>
+    </div>
+    <nav class="nav-menu">
+      <a href="../index.html"><i class="fas fa-home"></i> Home</a>
+      <a href="gallery.html"><i class="fas fa-images"></i> Gallery</a>
+      <a href="#dashboard"><i class="fas fa-tachometer-alt"></i> Dashboard</a>
+      <a href="#bookings"><i class="fas fa-calendar-check"></i> My Bookings</a>
+      <a href="#exhibitions"><i class="fas fa-calendar-alt"></i> Exhibitions</a>
+    </nav>
+    <div class="nav-auth">
+      <span class="user-welcome">Welcome, Visitor!</span>
+      <a href="visitor_login.html" class="auth-btn logout-btn">
+        <i class="fas fa-sign-out-alt"></i> Logout
+      </a>
+    </div>
+  </header>
+
+  <section id="home" class="hero-section">
+    <div class="hero-content">
+      <h1>Welcome to PixelPast</h1>
+      <p>Explore history, science & art through time</p>
+      <div class="hero-buttons">
+        <button onclick="scrollToSection('dashboard')" class="btn">Get Started</button>
+        <a href="gallery.html" class="btn">View Gallery</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="dashboard" class="dashboard-overview">
+    <div class="container">
+      <h2><i class="fas fa-tachometer-alt"></i> Dashboard Overview</h2>
+
+      <div class="welcome-message">
+        <h3>Welcome back, Visitor!</h3>
+        <p>Here's your personalized museum dashboard.</p>
+      </div>
+
+      <div class="stats-grid">
+        <div class="stat-card">
+          <i class="fas fa-calendar-check"></i>
+          <h3 id="totalBookings">0</h3>
+          <p>Total Bookings</p>
+        </div>
+        <div class="stat-card">
+          <i class="fas fa-museum"></i>
+          <h3 id="visitedMuseums">0</h3>
+          <p>Museums Visited</p>
+        </div>
+        <div class="stat-card">
+          <i class="fas fa-star"></i>
+          <h3 id="avgRating">0.0</h3>
+          <p>Average Rating</p>
+        </div>
+        <div class="stat-card">
+          <i class="fas fa-clock"></i>
+          <h3 id="upcomingTours">0</h3>
+          <p>Upcoming Tours</p>
+        </div>
+      </div>
+
+      <div class="quick-actions">
+        <h3><i class="fas fa-bolt"></i> Quick Actions</h3>
+        <div class="action-buttons">
+          <a href="gallery.html" class="action-btn">
+            <i class="fas fa-search"></i>
+            <span>Browse Museums</span>
+          </a>
+          <button onclick="scrollToSection('booking')" class="action-btn">
+            <i class="fas fa-calendar-plus"></i>
+            <span>Book New Tour</span>
+          </button>
+          <button onclick="scrollToSection('history')" class="action-btn">
+            <i class="fas fa-history"></i>
+            <span>View History</span>
+          </button>
+          <button onclick="scrollToSection('recommendations')" class="action-btn">
+            <i class="fas fa-lightbulb"></i>
+            <span>Get Recommendations</span>
+          </button>
+          <a href="chatbot.html" class="action-btn">
+            <i class="fas fa-robot"></i>
+            <span>Museum Chatbot</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="bookings" class="recent-bookings">
+    <div class="container">
+      <h2><i class="fas fa-calendar-check"></i> Recent Bookings</h2>
+      <div class="bookings-grid" id="recentBookings">
+        <!-- Dynamic Content -->
+      </div>
+      <div class="no-bookings" id="noBookings" style="display: none;">
+        <i class="fas fa-calendar-times"></i>
+        <h3>No Bookings Yet</h3>
+        <p>Start your museum journey by booking your first tour!</p>
+        <button onclick="scrollToSection('booking')" class="cta-btn">Book Your First Tour</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Museum Recommendation Search -->
+  <section class="section">
+    <div class="container">
+      <h2><i class="fas fa-search"></i> Museum Recommendation</h2>
+      <div style="max-width: 600px; margin: 0 auto; display: flex; gap: 10px;">
+        <input type="text" id="searchInput" placeholder="Enter museum name, city or type"
+          style="flex: 1; padding: 12px; border: 1px solid #ddd; border-radius: 8px;">
+        <button class="btn" style="background: #D9A299; color: black;" onclick="getRecommendations()">Search</button>
+      </div>
+      <div id="result" style="margin-top: 20px; text-align: center;"></div>
+    </div>
+  </section>
+
+  <section id="booking" class="section">
+    <div class="container">
+      <h2><i class="fas fa-calendar-plus"></i> Book Your Museum Tour</h2>
+
+      <div class="museum-search-section">
+        <h3><i class="fas fa-search"></i> Find Your Museum</h3>
+        <div class="search-container"
+          style="background: white; padding: 20px; border-radius: 12px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); margin-bottom: 2rem;">
+          <div class="search-box" style="display: flex; gap: 10px; margin-bottom: 15px;">
+            <input type="text" id="museumSearchInput" placeholder="Search museums by name, city, or type..."
+              style="flex: 1; padding: 10px; border: 1px solid #ddd; border-radius: 8px;">
+          </div>
+          <div class="search-filters">
+            <select id="typeFilter">
+              <option value="">All Types</option>
+              <option value="Art">Art</option>
+              <option value="History">History</option>
+              <option value="Science">Science</option>
+            </select>
+            <select id="cityFilter">
+              <option value="">All Cities</option>
+              <option value="Mumbai">Mumbai</option>
+              <option value="Delhi">Delhi</option>
+              <option value="Kolkata">Kolkata</option>
+            </select>
+            <button id="resetSearch" class="btn">Reset</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="booking-form-container">
+        <form id="bookingForm" class="booking-form">
+          <div class="form-group">
+            <label for="museumSelect"><i class="fas fa-museum"></i> Selected Museum</label>
+            <select id="museumSelect" required>
+              <option value="">Choose a museum from search results...</option>
+            </select>
+            <small class="form-help">Use the search above to find and select your preferred museum</small>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="visitDate"><i class="fas fa-calendar"></i> Visit Date</label>
+              <input type="date" id="visitDate" required>
+            </div>
+            <div class="form-group">
+              <label for="visitTime"><i class="fas fa-clock"></i> Visit Time</label>
+              <select id="visitTime" required>
+                <option value="">Select time...</option>
+                <option value="09:00">9:00 AM</option>
+                <option value="10:00">10:00 AM</option>
+                <option value="12:00">12:00 PM</option>
+                <option value="14:00">2:00 PM</option>
+                <option value="16:00">4:00 PM</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="numPeople"><i class="fas fa-users"></i> Number of People</label>
+              <input type="number" id="numPeople" min="1" max="20" value="1" required>
+            </div>
+            <div class="form-group">
+              <label for="tourType"><i class="fas fa-route"></i> Tour Type</label>
+              <select id="tourType" required>
+                <option value="">Select tour type...</option>
+                <option value="guided">Guided Tour (₹500/person)</option>
+                <option value="self-guided">Self-Guided Tour (₹200/person)</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="visitorName"><i class="fas fa-user"></i> Visitor Name</label>
+              <input type="text" id="visitorName" placeholder="Full name" required>
+            </div>
+            <div class="form-group">
+              <label for="visitorEmail"><i class="fas fa-envelope"></i> Email</label>
+              <input type="email" id="visitorEmail" placeholder="Email address" required>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="checkbox-label">
+              <input type="checkbox" id="termsAccepted" required>
+              I agree to the Terms & Conditions
+            </label>
+          </div>
+
+          <button type="submit" class="submit-btn"><i class="fas fa-check"></i> Confirm Booking</button>
+        </form>
+
+        <div class="booking-summary">
+          <h3><i class="fas fa-receipt"></i> Booking Summary</h3>
+          <div class="summary-item">
+            <span>Museum:</span> <span id="summaryMuseum">-</span>
+          </div>
+          <div class="summary-item">
+            <span>Date:</span> <span id="summaryDate">-</span>
+          </div>
+          <div class="summary-total">
+            <span>Total:</span> <span id="summaryTotal">₹0</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="history" class="section">
+    <div class="container">
+      <h2><i class="fas fa-history"></i> Booking History</h2>
+      <div class="history-filters">
+        <button class="filter-btn active" data-filter="all">All</button>
+        <button class="filter-btn" data-filter="upcoming">Upcoming</button>
+        <button class="filter-btn" data-filter="completed">Completed</button>
+      </div>
+      <div class="history-table-container">
+        <table id="history-table">
+          <thead>
+            <tr>
+              <th>Museum</th>
+              <th>Date</th>
+              <th>Time</th>
+              <th>Status</th>
+              <th>Rating</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody id="historyTableBody"></tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <section id="my-ratings" class="section">
+    <div class="container">
+      <h2><i class="fas fa-star"></i> My Ratings</h2>
+      <div id="ratingsList" class="bookings-grid"></div>
+      <div id="noRatings" class="no-bookings" style="display: none;">
+        <i class="fas fa-star-half-alt"></i>
+        <h3>No Ratings Yet</h3>
+        <p>Complete a visit and leave a review to see it here.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="exhibitions" class="section">
+    <div class="container">
+      <h2><i class="fas fa-calendar-alt"></i> Current Exhibitions</h2>
+      <div class="trending-museums" id="exhibits-container"></div>
+    </div>
+  </section>
+
+  <section id="popular" class="section">
+    <div class="container">
+      <h2><i class="fas fa-fire"></i> Popular Exhibits</h2>
+      <div class="stats-grid" id="popular-container"></div>
+    </div>
+  </section>
+
+  <!-- Foreign Visitors Analytics -->
+  <section id="foreign-visitors" class="section">
+    <div class="container">
+      <h2><i class="fas fa-globe"></i> Foreign Visitors Analytics</h2>
+      <div class="chart-controls">
+        <button class="chart-btn active" data-chart="yearly">Yearly Overview</button>
+        <button class="chart-btn" data-chart="district">Top Districts</button>
+        <button class="chart-btn" data-chart="monthly">Monthly Trends</button>
+      </div>
+      <div class="chart-container">
+        <canvas id="foreignChart"></canvas>
+      </div>
+      <div class="stats-summary">
+        <div class="summary-card">
+          <i class="fas fa-users"></i>
+          <h3 id="totalForeignVisitors">-</h3>
+          <p>Total Visitors</p>
+        </div>
+        <div class="summary-card">
+          <i class="fas fa-chart-line"></i>
+          <h3 id="growthRate">-</h3>
+          <p>Growth Rate</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script src="../../static/js/VisitorsHomePage.js"></script>
+</body>
+
+</html>
